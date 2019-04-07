@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "FileUnitCell.h"
+#import "FileListCell.h"
+
 typedef NS_ENUM(NSInteger, FileDisplayMode) {
     ListMode,
     CollectionMode
@@ -81,32 +84,56 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
     self.fileCollectionView.delegate = self;
     self.fileCollectionView.dataSource = self;
     
-    
     self.collectionlayout = [[UICollectionViewFlowLayout alloc]init];
+    self.collectionlayout.minimumInteritemSpacing = 3;
     
     self.fileCollectionView.collectionViewLayout = self.collectionlayout;
-    self.collectionlayout.minimumInteritemSpacing = 10;
+    
+    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FileUnitCell" bundle:nil] forCellWithReuseIdentifier:fileUnitCellId];
+    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FileListCell" bundle:nil] forCellWithReuseIdentifier:fileListCellId];
 }
 
-
-- (void)transfomeFlieDisplayWihtMode:(FileDisplayMode)mode {
-    
+- (NSArray*)getFileExtenWithFilderPath:(NSArray*)paths {
+    NSMutableArray * fileNams = [[NSMutableArray alloc]init];
+    for (NSString *path in paths) {
+        NSString *name = [path lastPathComponent];
+        if(name) {
+            [fileNams addObject:name];
+        }
+    }
+    return [NSArray arrayWithArray:fileNams];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.fileList.count*2;
+    return self.fileList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"fileUnit" forIndexPath:indexPath];
-    cell.alpha = 0;
-    [UIView animateWithDuration:0.5 animations:^{
-        cell.alpha = 1;
-    }];
-    return cell;
+    
+    if(self.displayMode == ListMode) {
+        
+       FileListCell * listCell = [collectionView dequeueReusableCellWithReuseIdentifier:fileListCellId forIndexPath:indexPath];
+        NSArray *fileName = [self getFileExtenWithFilderPath:self.fileList];
+        listCell.fileTypeImageView.image = [self getcurrentFileImageWithFileName:fileName[indexPath.row]];
+        listCell.fileName.text = fileName[indexPath.row];
+        return listCell;
+    }
+    else {
+        FileUnitCell* unitCell = [collectionView dequeueReusableCellWithReuseIdentifier:fileUnitCellId forIndexPath:indexPath];
+        NSArray *fileName = [self getFileExtenWithFilderPath:self.fileList];
+        unitCell.fileName.text = fileName[indexPath.row];
+        unitCell.fileTypeImage.image = [self getcurrentFileImageWithFileName:fileName[indexPath.row]];
+        return unitCell;
+    }
+    return [[UICollectionViewCell alloc]init];
+}
+
+- (UIImage*)getcurrentFileImageWithFileName:(NSString*)name {
+    NSString *fileExten = name.pathExtension;
+    return [UIImage imageNamed:[fileExten lowercaseString]];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -123,11 +150,14 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
     
     if(self.displayMode == ListMode)
     {
-        return CGSizeMake(width, width/5);
+        self.collectionlayout.minimumLineSpacing = 0;
+        return CGSizeMake(width, width/10);
     }
     else
     {
+        self.collectionlayout.minimumLineSpacing = 5;
         return CGSizeMake((width - 20)/3, (width - 20)/3);
+        
     }
     
     return CGSizeZero;

@@ -17,6 +17,10 @@
 		09869AAD2259854C00EBF72E /* FileOperatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869AAC2259854C00EBF72E /* FileOperatorUITests.m */; };
 		09869AC4225987B300EBF72E /* DevEnhance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09869AC02259866E00EBF72E /* DevEnhance.framework */; };
 		09869AC5225987B300EBF72E /* DevEnhance.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 09869AC02259866E00EBF72E /* DevEnhance.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		09869AD6225A399300EBF72E /* FileUnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869AD3225A399300EBF72E /* FileUnitCell.m */; };
+		09869AD7225A399300EBF72E /* FileUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09869AD4225A399300EBF72E /* FileUnitCell.xib */; };
+		09869ADB225A39CA00EBF72E /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869AD9225A39CA00EBF72E /* FileListCell.m */; };
+		09869ADC225A39CA00EBF72E /* FileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09869ADA225A39CA00EBF72E /* FileListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,12 @@
 		09869AAC2259854C00EBF72E /* FileOperatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOperatorUITests.m; sourceTree = "<group>"; };
 		09869AAE2259854C00EBF72E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DevEnhance.xcodeproj; path = frameworks/DevEnhance.xcodeproj; sourceTree = SOURCE_ROOT; };
+		09869AD3225A399300EBF72E /* FileUnitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUnitCell.m; sourceTree = "<group>"; };
+		09869AD4225A399300EBF72E /* FileUnitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileUnitCell.xib; sourceTree = "<group>"; };
+		09869AD5225A399300EBF72E /* FileUnitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUnitCell.h; sourceTree = "<group>"; };
+		09869AD8225A39CA00EBF72E /* FileListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileListCell.h; sourceTree = "<group>"; };
+		09869AD9225A39CA00EBF72E /* FileListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileListCell.m; sourceTree = "<group>"; };
+		09869ADA225A39CA00EBF72E /* FileListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +195,12 @@
 		09869AC92259CF0200EBF72E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				09869AD5225A399300EBF72E /* FileUnitCell.h */,
+				09869AD3225A399300EBF72E /* FileUnitCell.m */,
+				09869AD4225A399300EBF72E /* FileUnitCell.xib */,
+				09869AD8225A39CA00EBF72E /* FileListCell.h */,
+				09869AD9225A39CA00EBF72E /* FileListCell.m */,
+				09869ADA225A39CA00EBF72E /* FileListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09869A952259854C00EBF72E /* LaunchScreen.storyboard in Resources */,
+				09869AD7225A399300EBF72E /* FileUnitCell.xib in Resources */,
+				09869ADC225A39CA00EBF72E /* FileListCell.xib in Resources */,
 				09869A922259854C00EBF72E /* Assets.xcassets in Resources */,
 				09869A902259854B00EBF72E /* Main.storyboard in Resources */,
 			);
@@ -354,6 +372,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09869A8D2259854B00EBF72E /* ViewController.m in Sources */,
+				09869ADB225A39CA00EBF72E /* FileListCell.m in Sources */,
+				09869AD6225A399300EBF72E /* FileUnitCell.m in Sources */,
 				09869A982259854C00EBF72E /* main.m in Sources */,
 				09869A8A2259854B00EBF72E /* AppDelegate.m in Sources */,
 			);
