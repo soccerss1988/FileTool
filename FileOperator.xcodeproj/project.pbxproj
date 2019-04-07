@@ -32,6 +32,13 @@
 			remoteGlobalIDString = 09869A842259854B00EBF72E;
 			remoteInfo = FileOperator;
 		};
+		09869ABF2259866E00EBF72E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 098699512246115100EBF72E;
+			remoteInfo = DevEnhance;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +58,7 @@
 		09869AA82259854C00EBF72E /* FileOperatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileOperatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09869AAC2259854C00EBF72E /* FileOperatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOperatorUITests.m; sourceTree = "<group>"; };
 		09869AAE2259854C00EBF72E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DevEnhance.xcodeproj; path = frameworks/DevEnhance.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,7 @@
 		09869A872259854B00EBF72E /* FileOperator */ = {
 			isa = PBXGroup;
 			children = (
+				09869ABA2259865000EBF72E /* framworks */,
 				09869A882259854B00EBF72E /* AppDelegate.h */,
 				09869A892259854B00EBF72E /* AppDelegate.m */,
 				09869A8B2259854B00EBF72E /* ViewController.h */,
@@ -130,6 +139,22 @@
 				09869AAE2259854C00EBF72E /* Info.plist */,
 			);
 			path = FileOperatorUITests;
+			sourceTree = "<group>";
+		};
+		09869ABA2259865000EBF72E /* framworks */ = {
+			isa = PBXGroup;
+			children = (
+				09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */,
+			);
+			path = framworks;
+			sourceTree = "<group>";
+		};
+		09869ABC2259866E00EBF72E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09869AC02259866E00EBF72E /* DevEnhance.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +246,12 @@
 			mainGroup = 09869A7C2259854B00EBF72E;
 			productRefGroup = 09869A862259854B00EBF72E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 09869ABC2259866E00EBF72E /* Products */;
+					ProjectRef = 09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				09869A842259854B00EBF72E /* FileOperator */,
@@ -229,6 +260,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		09869AC02259866E00EBF72E /* DevEnhance.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DevEnhance.framework;
+			remoteRef = 09869ABF2259866E00EBF72E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		09869A832259854B00EBF72E /* Resources */ = {
@@ -437,6 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQYRMHEZEZ;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/frameworks/DevEnhance/DevEnhance.h\"";
 				INFOPLIST_FILE = FileOperator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,6 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQYRMHEZEZ;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/frameworks/DevEnhance/DevEnhance.h\"";
 				INFOPLIST_FILE = FileOperator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
