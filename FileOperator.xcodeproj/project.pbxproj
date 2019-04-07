@@ -15,6 +15,8 @@
 		09869A982259854C00EBF72E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869A972259854C00EBF72E /* main.m */; };
 		09869AA22259854C00EBF72E /* FileOperatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869AA12259854C00EBF72E /* FileOperatorTests.m */; };
 		09869AAD2259854C00EBF72E /* FileOperatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09869AAC2259854C00EBF72E /* FileOperatorUITests.m */; };
+		09869AC4225987B300EBF72E /* DevEnhance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09869AC02259866E00EBF72E /* DevEnhance.framework */; };
+		09869AC5225987B300EBF72E /* DevEnhance.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 09869AC02259866E00EBF72E /* DevEnhance.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,28 @@
 			remoteGlobalIDString = 098699512246115100EBF72E;
 			remoteInfo = DevEnhance;
 		};
+		09869AC6225987B300EBF72E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09869ABB2259866E00EBF72E /* DevEnhance.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 098699502246115100EBF72E;
+			remoteInfo = DevEnhance;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		09869AC8225987B300EBF72E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				09869AC5225987B300EBF72E /* DevEnhance.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09869A852259854B00EBF72E /* FileOperator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileOperator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09869AC4225987B300EBF72E /* DevEnhance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,16 +133,17 @@
 		09869A872259854B00EBF72E /* FileOperator */ = {
 			isa = PBXGroup;
 			children = (
-				09869ABA2259865000EBF72E /* framworks */,
+				09869ACC2259CF4100EBF72E /* ViewControllers */,
+				09869ACA2259CF0A00EBF72E /* Models */,
+				09869AC92259CF0200EBF72E /* Views */,
 				09869A882259854B00EBF72E /* AppDelegate.h */,
 				09869A892259854B00EBF72E /* AppDelegate.m */,
-				09869A8B2259854B00EBF72E /* ViewController.h */,
-				09869A8C2259854B00EBF72E /* ViewController.m */,
 				09869A8E2259854B00EBF72E /* Main.storyboard */,
 				09869A912259854C00EBF72E /* Assets.xcassets */,
 				09869A932259854C00EBF72E /* LaunchScreen.storyboard */,
 				09869A962259854C00EBF72E /* Info.plist */,
 				09869A972259854C00EBF72E /* main.m */,
+				09869ABA2259865000EBF72E /* framworks */,
 			);
 			path = FileOperator;
 			sourceTree = "<group>";
@@ -157,6 +182,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		09869AC92259CF0200EBF72E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		09869ACA2259CF0A00EBF72E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		09869ACC2259CF4100EBF72E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				09869A8B2259854B00EBF72E /* ViewController.h */,
+				09869A8C2259854B00EBF72E /* ViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,10 +215,12 @@
 				09869A812259854B00EBF72E /* Sources */,
 				09869A822259854B00EBF72E /* Frameworks */,
 				09869A832259854B00EBF72E /* Resources */,
+				09869AC8225987B300EBF72E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				09869AC7225987B300EBF72E /* PBXTargetDependency */,
 			);
 			name = FileOperator;
 			productName = FileOperator;
@@ -337,6 +387,11 @@
 			isa = PBXTargetDependency;
 			target = 09869A842259854B00EBF72E /* FileOperator */;
 			targetProxy = 09869AA92259854C00EBF72E /* PBXContainerItemProxy */;
+		};
+		09869AC7225987B300EBF72E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DevEnhance;
+			targetProxy = 09869AC6225987B300EBF72E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

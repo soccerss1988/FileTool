@@ -7,17 +7,24 @@
 //
 
 #import "ViewController.h"
-
+@import DevEnhance;
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet UICollectionView *FileListView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *disPlayMod;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib
+    
+    
+    
 }
 
+- (void)setupUI {
+    
+}
 
 @end
