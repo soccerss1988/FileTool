@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "FileUnitCell.h"
 #import "FileListCell.h"
+@import DevEnhance;
+
 
 typedef NS_ENUM(NSInteger, FileDisplayMode) {
     ListMode,
@@ -119,6 +121,7 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
         NSArray *fileName = [self getFileExtenWithFilderPath:self.fileList];
         listCell.fileTypeImageView.image = [self getcurrentFileImageWithFileName:fileName[indexPath.row]];
         listCell.fileName.text = fileName[indexPath.row];
+        [self switchModeAnimation:listCell];
         return listCell;
     }
     else {
@@ -126,11 +129,18 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
         NSArray *fileName = [self getFileExtenWithFilderPath:self.fileList];
         unitCell.fileName.text = fileName[indexPath.row];
         unitCell.fileTypeImage.image = [self getcurrentFileImageWithFileName:fileName[indexPath.row]];
+        [self switchModeAnimation:unitCell];
         return unitCell;
     }
     return [[UICollectionViewCell alloc]init];
 }
 
+- (void)switchModeAnimation:(UICollectionViewCell*)cell {
+    cell.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        cell.alpha = 1;
+    }];
+}
 - (UIImage*)getcurrentFileImageWithFileName:(NSString*)name {
     NSString *fileExten = name.pathExtension;
     return [UIImage imageNamed:[fileExten lowercaseString]];
