@@ -15,7 +15,6 @@ NSString * const fileListCellId = @"fileListCellId";
 }
 
 - (void)setSelected:(BOOL)selected {
-    NSLog(@"didSelect");
     if (selected) {
         self.backgroundColor = [UIColor darkGrayColor];
     } else {
@@ -24,7 +23,6 @@ NSString * const fileListCellId = @"fileListCellId";
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
-    NSLog(@"setHighlighted");
     if (highlighted) {
         self.alpha = 0.8;
     } else {

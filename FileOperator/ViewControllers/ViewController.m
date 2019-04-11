@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ReaderViewcontroller.h"
 #import "FileUnitCell.h"
 #import "FileListCell.h"
 @import DevEnhance;
@@ -18,11 +19,11 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
 };
 
 @import DevEnhance;
-@interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *fileCollectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *disPlayModSegment;
 @property (assign, nonatomic) FileDisplayMode displayMode;
-@property (strong, nonatomic) NSArray *fileList;
+@property (strong, nonatomic) NSMutableArray<FileUnit*> *fileList;
 @property (strong, nonatomic) UICollectionViewFlowLayout *collectionlayout;
 @end
 
@@ -31,7 +32,7 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib
-    
+//    NSLog(@"%@",[[NSFileManager defaultManager]documentDirectory]);
     //Data
     [self getFileListWithContentDirectory];
     
@@ -60,9 +61,18 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
 }
 
 - (void)getFileListWithContentDirectory {
-    self.fileList = [[NSArray alloc]init];
-    self.fileList = [[NSFileManager defaultManager] getFilePathFromContentFolder:[[NSFileManager defaultManager] documentDirectory]];
-    NSLog(@"%@",self.fileList);
+    
+    NSString *jsonFile = [[NSBundle mainBundle] pathForResource:@"FileList" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:jsonFile];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    NSArray *fileList = json[@"FileList"];
+    
+    self.fileList = [[NSMutableArray alloc]init];
+    for(NSDictionary * fileInfo in fileList) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:fileInfo[@"FileName"] ofType:fileInfo[@"type"]];
+        FileUnit *fileUnit = [[FileUnit alloc]initWithContentsOfPath:filePath];
+        [self.fileList addObject:fileUnit];
+    }
 }
 
 - (void)fileModeSegmentDidClicked:(UISegmentedControl*)sender {
@@ -95,10 +105,10 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
     [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FileListCell" bundle:nil] forCellWithReuseIdentifier:fileListCellId];
 }
 
-- (NSArray*)getFileExtenWithFilderPath:(NSArray*)paths {
+- (NSArray*)getFileExtenWithFilderPath:(NSArray<FileUnit*>*)paths {
     NSMutableArray * fileNams = [[NSMutableArray alloc]init];
-    for (NSString *path in paths) {
-        NSString *name = [path lastPathComponent];
+    for (FileUnit *fileUnit in paths) {
+        NSString *name = fileUnit.name;
         if(name) {
             [fileNams addObject:name];
         }
@@ -136,6 +146,11 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
 }
 
 - (void)switchModeAnimation:(UICollectionViewCell*)cell {
+    
+    if(self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:cell];
+    }
+    
     cell.alpha = 0;
     [UIView animateWithDuration:0.5 animations:^{
         cell.alpha = 1;
@@ -148,12 +163,13 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    
+    
     NSLog(@"select index %ld",(long)indexPath.row);
 }
 
 //每个单元格的大小size
-
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat width = self.fileCollectionView.frame.size.width;
@@ -169,8 +185,25 @@ typedef NS_ENUM(NSInteger, FileDisplayMode) {
         return CGSizeMake((width - 20)/3, (width - 20)/3);
         
     }
-    
     return CGSizeZero;
 }
+
+//MARK: UIViewControllerPreviewingDelegate
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    
+    location = [self.fileCollectionView convertPoint:location fromView:[previewingContext sourceView]];
+    NSIndexPath *collectionIndex = [self.fileCollectionView indexPathForItemAtPoint:location];
+    FileUnit *fileUnit = self.fileList[collectionIndex.row];
+    
+    ReaderViewcontroller *readerVC = [[ReaderViewcontroller alloc]init];
+    readerVC.fileUnit = fileUnit;
+    return readerVC;
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
+}
+
+
 
 @end
