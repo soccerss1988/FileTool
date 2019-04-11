@@ -1,2 +1,5 @@
 
+*.xcbkptlist
+
+
 FileOperator\.xcodeproj/xcuserdata/j\.xcuserdatad/xcdebugger/Breakpoints_v2\.xcbkptlist
